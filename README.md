@@ -3,7 +3,7 @@ Here is the code used in the IoT side of the In a Blink system. It includes the 
 
 There are 4 code files, 2 of which run on the mobile application, one runs on the rasberrypi, and one runs on the esp32.
 
-## RasberryPi code file: rasberrypi_camera_blink_detector.py
+### RasberryPi code file: rasberrypi_camera_blink_detector.py
 this file runs on the rasberrypi, connects to the rabbitmq middleware, activates the camera, detects blinks, and publishes the blinks to the middleware. 4 types of blinks are detected by this code: single blinks, double blinks, triple blinks, and long blinks.
 
 The blink detection occurs by converting the captured frame into grayscale, identifying darker pixels from lighter pixels depending on a threshold value, and identifying the presence of a pupil (eye is opened) based on the number of darker pixels.
