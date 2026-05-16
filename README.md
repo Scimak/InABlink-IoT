@@ -19,7 +19,21 @@ identifying if the pupil is present or not: is_now_closed = dark_count <= CLOSED
 Logic used to distinguish single, double, triple, and long blinks, depends on the time the eye remains closed and the time between blinks. eye_closed variable tracks the eye condition from the previous frame. if they eye was not closed previously and is closed now, current time is recorded. if they eye was closed previously and is open now, the elapsed time is calculated. these values allow us to identify long blinks. If the duration is too short for a long blink, a blink counter increments to detect how many blinks occur in succession to identify double and triple blinks. If the eye was open in the previous frame, the code identifies the time since the last blink. if that time exceeds 400 miliseconds, a message is published to the middleware with the blink count (if the blink count is zero, no message is published).
 
 
-### esp32 code file: lgihting_changer.py
+### esp32 code file: esp32_led.ino
+This code turns an ESP32-C3 into a Wi-Fi web server that controls an LED's brightness.
+
+It works by connecting to Wi-Fi using ssid and password, starts a web server on port 80, and listens for three HTTP requests:
+
+/off → LED off (PWM 0)
+
+/dim → LED dim (PWM 50)
+
+/on → LED fully on (PWM 255)
+
+Any device on the same network (like our Android app) can send these requests to the ESP's IP address to control the LED.
+
+
+
 
 
 
