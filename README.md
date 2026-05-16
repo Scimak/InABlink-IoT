@@ -7,6 +7,7 @@ There are 4 code files, 2 of which run on the mobile application, one runs on th
 this file runs on the rasberrypi, connects to the rabbitmq middleware, activates the camera, detects blinks, and publishes the blinks to the middleware. 4 types of blinks are detected by this code: single blinks, double blinks, triple blinks, and long blinks.
 
 The blink detection occurs by converting the captured frame into grayscale, identifying darker pixels from lighter pixels depending on a threshold value, and identifying the presence of a pupil (eye is opened) based on the number of darker pixels.
+
 converting to grayscale: gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 counting number of dark pixels based on thresh value: dark_count = cv2.countNonZero(thresh)
 identifying if the pupil is present or not: is_now_closed = dark_count <= CLOSED_EYE_PIXEL_LIMIT 
