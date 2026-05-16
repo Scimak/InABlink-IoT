@@ -2,14 +2,14 @@
 #include <WebServer.h>
 
 // 1. Replace with your network credentials
-const char* ssid = "YOUR_WIFI_NAME";
-const char* password = "YOUR_WIFI_PASSWORD";
+const char* ssid = "network_ssid";
+const char* password = "network_pass";
 
 // 2. Define the web server on port 80
 WebServer server(80);
 
-// 3. Define the LED pin (GPIO8 is standard for many C3 minis)
-const int ledPin = 8; 
+// 3. Define the LED pin 
+const int ledPin = 0; 
 
 void setup() {
   Serial.begin(115200);
@@ -18,6 +18,8 @@ void setup() {
   // --- Wi-Fi Connection Logic ---
   Serial.print("Connecting to ");
   Serial.println(ssid);
+
+  WiFi.setTxPower(WIFI_POWER_8_5dBm);
   
   WiFi.begin(ssid, password);
 
@@ -25,8 +27,10 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+    
   }
 
+  Serial.begin(115200);
   Serial.println("");
   Serial.println("WiFi connected!");
   Serial.print("IP address: ");
